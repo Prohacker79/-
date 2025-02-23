@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOKA Intelligence Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Народный Отдел Контролирующих Аномалий</h1>
+        <h2>"Контролировать. Защищать. Подавлять."</h2>
+        <p><strong>WARNING:</strong> All information is classified. Unauthorized access is strictly prohibited.</p>
+        
+        <button class="button" data-section="documents">Classified Documents</button>
+        <button class="button" data-section="chernobyl">Chernobyl Status</button>
+        <button class="button" data-section="surveillance">Surveillance Reports</button>
+        
+        <div id="documents" class="content">
+            <h1>Classified Documents – NOKA Intelligence Archive</h1>
+            <p><strong>NOKA-004: Initial Anomaly Detection Report</strong></p>
+            <p>Date: February 12, 1986<br>Summary: Initial reports from reactor personnel indicate anomalies beneath the facility...</p>
+            <p><strong>NOKA-009: Incident Report – April 26, 1986</strong></p>
+            <p>Summary: 01:23:39 - Sudden energy surge detected beneath Reactor No. 4...</p>
+            <p><strong>NOKA-017: The Anomaly’s Current Activity & Effects</strong></p>
+            <p>Summary: Fluctuating radiation levels; areas once deemed safe now highly irradiated...</p>
+            <p><strong>NOKA-023: Western Espionage & Anomaly Extraction Attempts</strong></p>
+            <p>Summary: Confirmed foreign intrusions within the Exclusion Zone...</p>
+            <p><strong>NOKA-031: Containment Strategy Proposal</strong></p>
+            <p>Summary: Objective: Prevent anomaly spread and foreign exploitation...</p>
+        </div>
+        
+        <div id="chernobyl" class="content">
+            <h1>Chernobyl Incident Report – NOKA Directorate</h1>
+            <p>Date: April 26, 1986<br>Location: Chernobyl Nuclear Power Plant, Pripyat, Ukrainian SSR<br>Classified Level: TOP SECRET – EYES ONLY</p>
+            <h2>Incident Overview</h2>
+            <p>At precisely 01:23:40, Reactor No. 4 suffered a catastrophic explosion...</p>
+            <h2>Current Contamination Status</h2>
+            <p>The Exclusion Zone remains heavily irradiated, though fluctuations have been detected...</p>
+            <h2>Foreign Intrusions & Espionage Threats</h2>
+            <p>NOKA intelligence has identified an increasing number of foreign operatives...</p>
+            <h2>Containment & Countermeasures</h2>
+            <p>NOKA’s primary directive remains the containment of the anomaly...</p>
+        </div>
+        
+        <div id="surveillance" class="content">
+            <h1>Surveillance and Intelligence Reports</h1>
+            <h2>Recent Intrusions</h2>
+            <p>Foreign agents attempting to access restricted areas...</p>
+            <h2>Recovered Communications</h2>
+            <p>Intercepted radio transmissions between Western operatives...</p>
+            <h2>Active Surveillance Zones</h2>
+            <p>Live reports from NOKA security checkpoints...</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(sectionId) {
+            document.querySelectorAll(".content").forEach(section => {
+                section.style.display = "none";
+            });
+            document.getElementById(sectionId).style.display = "block";
+        }
+
+        document.querySelectorAll(".button").forEach(button => {
+            button.addEventListener("click", function () {
+                showContent(this.dataset.section);
+            });
+        });
+    </script>
+</body>
+</html>
