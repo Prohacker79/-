@@ -1,0 +1,58 @@
+import string
+import random
+
+class FialkaDecoder:
+    def __init__(self, rotors, reflector):
+        self.alphabet = string.ascii_uppercase[:26]  # Using A-Z for simplicity
+        self.rotors = rotors
+        self.reflector = reflector
+        self.positions = [0] * 10  # Initial rotor positions
+
+    def step_rotors(self):
+        """Implements stepping mechanism"""
+        for i in range(10):
+            self.positions[i] = (self.positions[i] + 1) % len(self.alphabet)
+            if self.positions[i] != 0:
+                break  # Simulate cascade stepping
+
+    def decrypt_letter(self, letter):
+        """Decrypt a single letter through the rotor system"""
+        if letter not in self.alphabet:
+            return letter  # Ignore characters not in the alphabet
+
+        index = self.alphabet.index(letter)
+        
+        # Forward pass through rotors
+        for i in range(10):
+            index = self.rotors[i].index(self.alphabet[index])
+
+        # Reflector
+        index = self.reflector.index(self.alphabet[index])
+
+        # Reverse pass through rotors
+        for i in reversed(range(10)):
+            index = self.alphabet.index(self.rotors[i][index])
+
+        return self.alphabet[index]
+
+    def decrypt_message(self, encrypted_message):
+        """Decrypts an entire message letter by letter"""
+        decrypted_message = ""
+        for letter in encrypted_message.upper():
+            self.step_rotors()
+            decrypted_message += self.decrypt_letter(letter)
+        return decrypted_message
+
+# Example Usage
+# Use the same rotors and reflector as in encryption
+from fialka_cipher import FialkaCipher
+
+cipher = FialkaCipher()
+decoder = FialkaDecoder(cipher.rotors, cipher.reflector)
+
+message = "HELLO FIALKA CIPHER"
+encrypted = cipher.encrypt_message(message)
+decrypted = decoder.decrypt_message(encrypted)
+
+print("Encrypted:", encrypted)
+print("Decrypted:", decrypted)
